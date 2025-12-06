@@ -8,7 +8,7 @@ J’avais envie de regrouper sur un seul écran les données principales des qua
 -	Smart Solar 100/30
 -	Chargeur IP22 12/30
 Je trouve cela plus pratique que les petits afficheurs ronds Victron et je n’ai pas toujours envie d’avoir mon téléphone à la main, surtout en navigation pour consulter l’App Victron Connect, même si elle est très aboutie.
- 
+ ![Description de l'image](chemin/vers/votre-image.jpg)
 
 LA CARTE WAVESHARE :
 C’est une carte « All-In-One ». Ses avantages c’est qu’elle est plus grande que les afficheurs Victron : 5 pouces 1024*600, tactile, facile à brancher car elle a une entré pour l’alimentation de 7-36V et elle communique en Bluetooth avec les appareils Victron. Elle possède une  I/O CAN potentiellement interfaçable avec le réseau NMEA2000 du bord. Son prix est raisonnable, moins de 50€.
