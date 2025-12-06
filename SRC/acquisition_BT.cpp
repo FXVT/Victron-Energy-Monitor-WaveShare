@@ -21,7 +21,7 @@
 #include <aes/esp_aes.h>
 
 // ========================================
-// Personnalisation
+// CUSTOMIZATION
 // ========================================
 
 // Caractéristiques des appareils Victron
@@ -366,7 +366,7 @@ class MyAdvertisedDeviceCallbacks : public BLEAdvertisedDeviceCallbacks {
         break;
 
       // ========================================
-      // Traitement du SmartSolar (Panneau solaire)
+      // Traitement du SmartSolar (Regulateur Panneau solaire)
       // ========================================
       case DEVICE_SMARTSOLAR:
         {

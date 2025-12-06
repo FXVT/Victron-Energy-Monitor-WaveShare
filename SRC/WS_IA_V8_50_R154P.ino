@@ -61,7 +61,7 @@ LV_IMG_DECLARE(Logo_Victron120x120TC);          // Logo Victron (120x120 pixels)
 // ========================================
 
 // R154O: Variable version centralisée - affichée sur le splash et en bas de l'écran principal
-const char *VERSION_APP = "v8.50.R154O";
+const char *VERSION_APP = "v8.50.R154P";
 
 // ========================================
 // CUSTOMIZATION

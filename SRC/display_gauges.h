@@ -1,8 +1,10 @@
 // ========================================
 // Fichier: display_gauges.h
-// Version 8.50.R154O - Support performances et nom bateau
+// Version 8.50.R154P - Labels performance harmonisés
+// CHANGEMENTS R154P:
+// - Labels performance: même police (Montserrat 20) pour valeur ET symbole %
 // CHANGEMENTS R154O:
-// - Ajout champ perf_label dans struct Gauge
+// - Ajout champ perf_label et perf_percent_label dans struct Gauge
 // - Signature createGauges() avec boat_name et version_app
 // - Signature initDisplayGauges() avec boat_name et version_app
 // ========================================

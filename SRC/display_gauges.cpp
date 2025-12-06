@@ -1,6 +1,11 @@
 // ========================================
 // Fichier: display_gauges.cpp
-// Version 8.50.R154O - Bandeau titre + performances + ajustements visuels
+// Version 8.50.R154P - Labels performance harmonisés
+// CHANGEMENTS R154P:
+// - Labels performance: même police (Montserrat 20) pour valeur ET symbole %
+// - Position ajustée (-62 au lieu de -38) pour éviter débordement du symbole %
+// - Gap fixe optimisé (+40 au lieu de +18) pour tous les cas (0% à 125%)
+// - Pas de superposition garantie, code simple et rapide
 // CHANGEMENTS R154O:
 // - Bandeau bleu pleine largeur (#005FBE) pour titre
 // - Logo Victron blanc (48x30px) en haut à droite (10px du bord)
@@ -11,8 +16,6 @@
 // - Mise à jour performances dans setGaugeValue()
 // - Couleur rouge si perf >100%, blanc sinon (pour valeur ET %)
 // - Jauges hautes descendues à y=170 (écart 5px avec bandeau)
-// - Performance: Valeur Montserrat 20, symbole % Montserrat 16
-// - Position perf rapprochée du bord droit (-38px au lieu de -50px)
 // - Batterie descendue de 5px (y=455), cadre réduit à 300px
 // ========================================
 #include <Arduino.h>
@@ -167,20 +170,20 @@ void createGauges(const char* boat_name, const char* version_app)
         lv_obj_set_style_text_color(gauges[gauge_id].name_label, lv_color_white(), 0);
         lv_obj_align(gauges[gauge_id].name_label, LV_ALIGN_CENTER, x - 512, y - 300 + size/2);
         
-        // R154O: Labels performance - valeur (20) + symbole % (16)
+        // R154P: Labels performance - même police (20) pour valeur ET symbole %
         gauges[gauge_id].perf_label = lv_label_create(screen);
         lv_label_set_text(gauges[gauge_id].perf_label, "0");
-        lv_obj_set_style_text_font(gauges[gauge_id].perf_label, &lv_font_montserrat_20, 0);  // R154O: Taille 20
+        lv_obj_set_style_text_font(gauges[gauge_id].perf_label, &lv_font_montserrat_20, 0);  // R154P: Police 20
         lv_obj_set_style_text_color(gauges[gauge_id].perf_label, lv_color_hex(0xFFFFFF), 0);
-        int perf_x = x + (size + padding*2)/2 - 38;  // R154O: Rapproché du bord
-        int perf_y = y - size/2 - padding + 12;      // R154O: Ajusté verticalement
+        int perf_x = x + (size + padding*2)/2 - 62;  // R154P: Plus à gauche (-62) pour éviter débordement
+        int perf_y = y - size/2 - padding + 12;
         lv_obj_set_pos(gauges[gauge_id].perf_label, perf_x, perf_y);
         
         gauges[gauge_id].perf_percent_label = lv_label_create(screen);
         lv_label_set_text(gauges[gauge_id].perf_percent_label, "%");
-        lv_obj_set_style_text_font(gauges[gauge_id].perf_percent_label, &lv_font_montserrat_16, 0);  // R154O: Taille 16
+        lv_obj_set_style_text_font(gauges[gauge_id].perf_percent_label, &lv_font_montserrat_20, 0);  // R154P: Même police 20
         lv_obj_set_style_text_color(gauges[gauge_id].perf_percent_label, lv_color_hex(0xFFFFFF), 0);
-        lv_obj_set_pos(gauges[gauge_id].perf_percent_label, perf_x + 18, perf_y + 2);  // Décalé pour coller
+        lv_obj_set_pos(gauges[gauge_id].perf_percent_label, perf_x + 40, perf_y + 2);  // R154P: Gap +40 pour police 20
     }
 
     // JAUGE ALTERNATEUR
@@ -243,20 +246,20 @@ void createGauges(const char* boat_name, const char* version_app)
         lv_obj_set_style_text_color(gauges[gauge_id].name_label, lv_color_white(), 0);
         lv_obj_align(gauges[gauge_id].name_label, LV_ALIGN_CENTER, x - 512, y - 300 + size/2);
         
-        // R154O: Labels performance - valeur (20) + symbole % (16)
+        // R154P: Labels performance - même police (20) pour valeur ET symbole %
         gauges[gauge_id].perf_label = lv_label_create(screen);
         lv_label_set_text(gauges[gauge_id].perf_label, "0");
-        lv_obj_set_style_text_font(gauges[gauge_id].perf_label, &lv_font_montserrat_20, 0);  // R154O: Taille 20
+        lv_obj_set_style_text_font(gauges[gauge_id].perf_label, &lv_font_montserrat_20, 0);  // R154P: Police 20
         lv_obj_set_style_text_color(gauges[gauge_id].perf_label, lv_color_hex(0xFFFFFF), 0);
-        int perf_x = x + (size + padding*2)/2 - 38;  // R154O: Rapproché du bord
-        int perf_y = y - size/2 - padding + 12;      // R154O: Ajusté verticalement
+        int perf_x = x + (size + padding*2)/2 - 62;  // R154P: Plus à gauche (-62) pour éviter débordement
+        int perf_y = y - size/2 - padding + 12;
         lv_obj_set_pos(gauges[gauge_id].perf_label, perf_x, perf_y);
         
         gauges[gauge_id].perf_percent_label = lv_label_create(screen);
         lv_label_set_text(gauges[gauge_id].perf_percent_label, "%");
-        lv_obj_set_style_text_font(gauges[gauge_id].perf_percent_label, &lv_font_montserrat_16, 0);  // R154O: Taille 16
+        lv_obj_set_style_text_font(gauges[gauge_id].perf_percent_label, &lv_font_montserrat_20, 0);  // R154P: Même police 20
         lv_obj_set_style_text_color(gauges[gauge_id].perf_percent_label, lv_color_hex(0xFFFFFF), 0);
-        lv_obj_set_pos(gauges[gauge_id].perf_percent_label, perf_x + 18, perf_y + 2);  // Décalé pour coller
+        lv_obj_set_pos(gauges[gauge_id].perf_percent_label, perf_x + 40, perf_y + 2);  // R154P: Gap +40 pour police 20
     }
 
     // JAUGE QUAI
@@ -319,20 +322,20 @@ void createGauges(const char* boat_name, const char* version_app)
         lv_obj_set_style_text_color(gauges[gauge_id].name_label, lv_color_white(), 0);
         lv_obj_align(gauges[gauge_id].name_label, LV_ALIGN_CENTER, x - 512, y - 300 + size/2);
         
-        // R154O: Labels performance - valeur (20) + symbole % (16)
+        // R154P: Labels performance - même police (20) pour valeur ET symbole %
         gauges[gauge_id].perf_label = lv_label_create(screen);
         lv_label_set_text(gauges[gauge_id].perf_label, "0");
-        lv_obj_set_style_text_font(gauges[gauge_id].perf_label, &lv_font_montserrat_20, 0);  // R154O: Taille 20
+        lv_obj_set_style_text_font(gauges[gauge_id].perf_label, &lv_font_montserrat_20, 0);  // R154P: Police 20
         lv_obj_set_style_text_color(gauges[gauge_id].perf_label, lv_color_hex(0xFFFFFF), 0);
-        int perf_x = x + (size + padding*2)/2 - 38;  // R154O: Rapproché du bord
-        int perf_y = y - size/2 - padding + 12;      // R154O: Ajusté verticalement
+        int perf_x = x + (size + padding*2)/2 - 62;  // R154P: Plus à gauche (-62) pour éviter débordement
+        int perf_y = y - size/2 - padding + 12;
         lv_obj_set_pos(gauges[gauge_id].perf_label, perf_x, perf_y);
         
         gauges[gauge_id].perf_percent_label = lv_label_create(screen);
         lv_label_set_text(gauges[gauge_id].perf_percent_label, "%");
-        lv_obj_set_style_text_font(gauges[gauge_id].perf_percent_label, &lv_font_montserrat_16, 0);  // R154O: Taille 16
+        lv_obj_set_style_text_font(gauges[gauge_id].perf_percent_label, &lv_font_montserrat_20, 0);  // R154P: Même police 20
         lv_obj_set_style_text_color(gauges[gauge_id].perf_percent_label, lv_color_hex(0xFFFFFF), 0);
-        lv_obj_set_pos(gauges[gauge_id].perf_percent_label, perf_x + 18, perf_y + 2);  // Décalé pour coller
+        lv_obj_set_pos(gauges[gauge_id].perf_percent_label, perf_x + 40, perf_y + 2);  // R154P: Gap +40 pour police 20
     }
 
     // JAUGE BATTERIE
