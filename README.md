@@ -60,7 +60,8 @@ REMARQUES SUR LE FONCTIONNEMENT :
 -	Le Status est le status détecté par le Smart Solar (Bulk, Absoption..)
 -	Le TTG (Time To Go) est la durée estimée de l’autonomie de la batterie. Si Production > Consommation le TTG devient « Infini »
 -	Les Ampères affichés en bas à droite sont issus du BMV712, c’est donc le bilan de ce qui est consommé et ce qui est produit. Si l’ampérage devient négatif (Consommation > Production) l’affichage de la valeur devient orange
--	Full indique dans combien de temps la batterie sera pleine en fonction de la production et de la consommation. Si Consommation > Production alors Full affiche «---« 
+-	Full indique dans combien de temps la batterie sera pleine en fonction de la production et de la consommation. Si Consommation > Production alors Full affiche «---«
+-	Mode veille: Toucher l'écran permet de passer en mode veille, c'est à dire éclairage atténué. Ce n'est pas vraiment un réglage de la luminosité, que je n'ai pas trouvé pour cette carte. J'ai triché en superposant un écran noir avec 80% d'opacité. Pour revenir en mode normal il faut toucher à nouveau l'écran. Il faut insister parfois quand ce n'est ps immédiat. C'est le gros défaut, car les test avec une réception BLE en continue ou avec FreeRtos et des mutex n'a pas donné de bons résultats en matière de réception, même si ça rendait le "touch" plus réactif.
 
 
 
