@@ -9,6 +9,7 @@ J’avais envie de regrouper sur un seul écran les données principales des qua
 -	Orion XS 50
 -	Smart Solar 100/30
 -	Chargeur IP22 12/30
+  
 Je trouve cela plus pratique que les petits afficheurs ronds Victron et je n’ai pas toujours envie d’avoir mon téléphone à la main, surtout en navigation pour consulter l’App Victron Connect, même si elle est très aboutie.
  ![Description de l'image](IMAGES/IMG_20251203_140255.jpg)
 
