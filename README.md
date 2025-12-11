@@ -1,6 +1,6 @@
 # Victron-Energy-Monitor-WaveShare
 A Waveshare ESP32 S3 touch LCD 5B turned into a monitor screen for Victron devices (BMV712, Orion XS50, IP22, SmartSolar)
-
+For the English version, please read the file ReadMeEN.md
 Ce projet permet d’utiliser une carte Waveshare ESP32 S3 Touch LCD 5B comme répéteur de plusieurs appareils Victron par liaison BlueTooth.
 J’avais envie de regrouper sur un seul écran les données principales des quatre appareils Victron du bord :
 -	BMV 712
