@@ -48,8 +48,7 @@ The MAC address and encryption key for each device must be obtained using the Vi
 The background image for the splash screen is 3 times smaller than the screen, 341x200 instead of 1024x600. LVGL zooms it by a factor of 3 for full-screen display. The small Victron logo is displayed at its native size.
 
 **OPERATIONAL NOTES:**
-*   Data refresh occurs approximately every 1.5 seconds. Except for the IP22 on our boat, which only sends data every 20-30s. I haven't yet been able to clarify this mystery. Perhaps a future version with asynchronous BLE and mutex will have better performance.
-*   The red dot in the corner of each gauge indicates the reception of new data. If a device stops transmitting for 15s, the indicator turns off (1 minute for the IP22).
+*   Data refresh occurs approximately every 1.5 seconds. Note: During testing, I noticed that the IP22 seems to have a less powerful Bluetooth emission compared to other devices. Additionally, it can happen that the signal becomes degraded and packets are missed, resulting in a more spaced-out refresh rate. This issue disappears if you bring the ESP32 closer to the IP22.
 *   The production displayed at the bottom left is the daily production. This data comes from the SmartSolar.
 *   The "Status" is the status detected by the SmartSolar (Bulk, Absorption, etc.).
 *   The TTG (Time To Go) is the estimated battery autonomy duration. If Production > Consumption, the TTG becomes "Infinite".
