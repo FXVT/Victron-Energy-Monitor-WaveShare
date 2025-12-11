@@ -54,7 +54,7 @@ o	Dither images
 L’image de fond d’écran du splash est 3 fois plus petite que l’écran, 341*200 au lieu de 1024*600. LVGL la zoome 3 fois pour que l’affichage soit plein écran. Le petit logo Victron est affiché à sa taille native.
 
 REMARQUES SUR LE FONCTIONNEMENT :
--	Le rafraichissement des données est d’environ toutes les 1.5 seconde. Excepté pour l’IP22 de notre bateau qui n’envoie les données que toutes les 20-30s. Je ne suis pas encore arrivé à éclaircir ce mystère. Peut-être qu’une prochaine version avec BLE asynchrone et mutex aura de meilleures performances
+-	Le rafraichissement des données est d’environ toutes les 1.5 seconde. Remarque: lors des tests j'ai remarqué que l'IP22 semble avoir une émission bluetooth moins puissante que les autres appareils. Aussi il peut arriver que le signal soit dégradé et que l'on manque des paquest ce qui se traduit par un rafraichissement plus espacé. Ce problème disparait si on rapproche l'ESP32 de l'IP22.
 -	Le point rouge dans le coin de chaque jauge indique la réception de nouvelles données. Si l’appareil n’émet plus après 15s le voyant s’éteint (1mn pour l’IP22)
 -	La production affichée en bas à gauche est la production journalière. Cette donnée est issue du Smart Solar
 -	Le Status est le status détecté par le Smart Solar (Bulk, Absoption..)
