@@ -29,14 +29,23 @@ Dépendances : Bibliothèques
 Paramétrage LVGL : Le fichier de paramétrage de LVGL « lv_conf.h » doit avoir été correctement paramétré par rapport à la carte utilisée. S’en assurer en testant les programmes « examples » de la library LVGL.
 Dans ce fichier, ne pas oublier de sélectionner les polices de caractères utilisées par le projet (Paragraphe « Font usage »), Sélectionner également les paramètres suivants en particulier pour obtenir des couleurs en dégradées pour le fond d’écran.
 
+
 PERSONNALISATION :
 Des éléments doivent être impérativement personnalisés dans le code (Chapitre : « Personnalisation » sans le code) en fonction du bateau, de la batterie de servitude, et surtout des caractéristiques des appareils Victron :
 -	Dans le fichier principal WS_IA_V8.XX_RXXX.INO :
+
+Le nom du bateau qui sera affiché sur l'écran de splash et la ligne d'entête de l'écran principal.
 <pre>
 const char *NOM_BATEAU = "ALBA III"; 
 </pre>
 
 -	Dans le fichier acquisition_BT.cpp :
+
+o	Capacité du parc de batteries gérée par le BMV712 (A)
+o	Puissance du panneau solaire (Watt)
+o	Puissance alternateur (A)
+o	Puissance chargeur de quai (A)
+
 <pre>
 // Caractéristiques des appareils Victron
 int CAPACITE_BATTERIE_AH = 280;  // Capacité batterie (Ah) pour calculs TTG
@@ -45,13 +54,7 @@ int PALT = 50;    // Puissance max alternateur (Ampère)
 int PQUAI = 30;   // Puissance max chargeur de quai (Ampère)
 </pre>
 
-o	Capacité du parc de batteries gérée par le BMV712 (A)
-o	Puissance du panneau solaire (Watt)
-o	Puissance alternateur (A)
-o	Puissance chargeur de quai (A)
-
-
-o	Adresse MAC de chaque appareil Victron
+o	Adresse MAC de chaque appareil Victron. Attention: Minuscules/majuscules peuvent avoir une importance.
 <pre>
 // Adresses MAC des appareils Victron
 #define MAC_SMARTSOLAR "f3:81:dc:56:9f:97"
@@ -96,6 +99,7 @@ Facultatif: Le nom en clair des appareils, sert à avoir des messages de debug p
 #define NAME_ORION_XS "Orion XS"
 #define NAME_IP22 "IP22"
 </pre>
+
 
 IMAGES :
 Les images de l’écran de splash ont été générées par Microsoft Copilot en « .PNG » et transformées en « .c » par le convertisseur LVGL.
