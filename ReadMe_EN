@@ -67,13 +67,13 @@ const char *NOM_BATEAU = "ALBA III";
 - Alternator power (A)  
 - Shore charger power (A)
 
-<pre>
+```cpp
 // Victron device characteristics
 int CAPACITE_BATTERIE_AH = 280;  // Battery capacity (Ah) for TTG calculations
 int PSOL = 350;   // Max solar panel power (W)
 int PALT = 50;    // Max alternator output (A)
 int PQUAI = 30;   // Max shore charger output (A)
-</pre>
+```
 
 #### MAC address of each Victron device  
 Note: Uppercase/lowercase may matter.
