@@ -1,11 +1,6 @@
-Bien sûr — voici **l’intégralité du texte traduit**, réaffiché en un seul bloc continu pour que tu puisses tout voir facilement.
-
----
-
 # Victron‑Energy‑Monitor‑WaveShare  
 A Waveshare ESP32 S3 Touch LCD 5B turned into a monitoring screen for Victron devices (BMV712, Orion XS50, IP22, SmartSolar)
 
-For the English version, please read the file **ReadMe_EN.md**.
 
 This project allows you to use a Waveshare ESP32 S3 Touch LCD 5B as a Bluetooth repeater and monitoring display for several Victron devices.  
 I wanted to consolidate the key data from the four onboard Victron devices onto a single screen:
@@ -72,13 +67,13 @@ const char *NOM_BATEAU = "ALBA III";
 - Alternator power (A)  
 - Shore charger power (A)
 
-```cpp
+<pre>
 // Victron device characteristics
 int CAPACITE_BATTERIE_AH = 280;  // Battery capacity (Ah) for TTG calculations
 int PSOL = 350;   // Max solar panel power (W)
 int PALT = 50;    // Max alternator output (A)
 int PQUAI = 30;   // Max shore charger output (A)
-```
+</pre>
 
 #### MAC address of each Victron device  
 Note: Uppercase/lowercase may matter.
