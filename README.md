@@ -32,19 +32,70 @@ Dans ce fichier, ne pas oublier de sélectionner les polices de caractères util
 PERSONNALISATION :
 Des éléments doivent être impérativement personnalisés dans le code (Chapitre : « Personnalisation » sans le code) en fonction du bateau, de la batterie de servitude, et surtout des caractéristiques des appareils Victron :
 -	Dans le fichier principal WS_IA_V8.XX_RXXX.INO :
-o	Nom du bateau
--	Dans le fichier acquisition_BP.cpp :
+<pre>
+const char *NOM_BATEAU = "ALBA III"; 
+</pre>
+
+-	Dans le fichier acquisition_BT.cpp :
+<pre>
+// Caractéristiques des appareils Victron
+int CAPACITE_BATTERIE_AH = 280;  // Capacité batterie (Ah) pour calculs TTG
+int PSOL = 350;   // Puissance max panneau solaire (Watt)
+int PALT = 50;    // Puissance max alternateur (Ampère)
+int PQUAI = 30;   // Puissance max chargeur de quai (Ampère)
+</pre>
+
 o	Capacité du parc de batteries gérée par le BMV712 (A)
 o	Puissance du panneau solaire (Watt)
 o	Puissance alternateur (A)
 o	Puissance chargeur de quai (A)
+
+
 o	Adresse MAC de chaque appareil Victron
+<pre>
+// Adresses MAC des appareils Victron
+#define MAC_SMARTSOLAR "f3:81:dc:56:9f:97"
+#define MAC_BMV_712 "c5:1d:ac:ed:91:92"
+#define MAC_ORION_XS "fb:c1:a3:08:4e:8c"
+#define MAC_IP22 "fb:82:24:5d:bb:27"
+</pre>
+
+
 o	Clé de cryptage de chaque appareil Victron.
-L’adresse MAC et la clé de cryptage de chaque appareil doivent être obtenue grâce à l’application VictronConnect disponible pour Android ou IOS. Dans l’application, pour chaque appareil, cliquer sur l’icône engrenage /  Menu 3 points / Infos produit /  Vérifier que le Bluetooth est activer  (Ne JAMAIS désactiver le Bluetooth, cela peut être irréversible). En bas de l’écran cliquez sur Données de Cryptage, sur l’écran suivant noter l’adresse MAC et la clé de cryptage. 
+<pre>
+// Clés de décryptage
+uint8_t key_SmartSolar[16] = {
+  0x4B, 0x05, 0x18, 0xE7, 0x42, 0x76, 0x88, 0x3A, 0xAE, 0x6F, 0x1C, 0xC9, 0xB0, 0x84, 0x25, 0x06
+};
+
+uint8_t key_BMV[16] = {
+  0xB4, 0x26, 0xA6, 0x45, 0x33, 0xFA, 0xD9, 0x63, 0x66, 0xAB, 0x72, 0xD3, 0x30, 0xAC, 0x13, 0x5A
+};
+
+uint8_t key_OrionXS[16] = {
+  0xEC, 0x7E, 0x29, 0xE7, 0x60, 0x43, 0xB4, 0x91, 0x07, 0xB6, 0x01, 0x33, 0x06, 0xBB, 0xD0, 0x13
+};
+
+uint8_t key_IP22[16] = {
+  0x64, 0xEB, 0xC5, 0x9D, 0xA0, 0xA1, 0x80, 0xB5, 0x9A, 0xE7, 0x44, 0xCF, 0x2B, 0xB4, 0xFF, 0x8B
+};
+</pre>
+
+L’adresse MAC 
+et la clé de cryptage de chaque appareil doivent être obtenue grâce à l’application VictronConnect disponible pour Android ou IOS. Dans l’application, pour chaque appareil, cliquer sur l’icône engrenage /  Menu 3 points / Infos produit /  Vérifier que le Bluetooth est activer  (Ne JAMAIS désactiver le Bluetooth, cela peut être irréversible). En bas de l’écran cliquez sur Données de Cryptage, sur l’écran suivant noter l’adresse MAC et la clé de cryptage. 
 Ces deux informations devront être reportées dans le code source avec le format requis, par exemple :
 -	6 octets de l’adresse MAC : f3 :81… (lettres en minuscules)
 -	16 octets de la clé de cryptage : 0x4B, 0x05…( Lettres en majuscules)
 Avertissement : La clé de cryptage d’un appareil Victron change si vous changez son code PIN. Si vous changez donc le code PIN d’un de vos appareils pour sécuriser son accès Bluetooth vous devrez obligatoirement modifier la clé de cryptage dans le code et le recompiler, sinon la carte Waveshare ne reconnaitra pas cet appareil.
+
+Facultatif: Le nom en clair des appareils, sert à avoir des messages de debug plus clairs.
+    <pre>
+// Noms des appareils
+#define NAME_SMARTSOLAR "SmartSolar"
+#define NAME_BMV_712 "BMV-712"
+#define NAME_ORION_XS "Orion XS"
+#define NAME_IP22 "IP22"
+</pre>
 
 IMAGES :
 Les images de l’écran de splash ont été générées par Microsoft Copilot en « .PNG » et transformées en « .c » par le convertisseur LVGL.
@@ -66,45 +117,10 @@ REMARQUES SUR LE FONCTIONNEMENT :
 -	Full indique dans combien de temps la batterie sera pleine en fonction de la production et de la consommation. Si Consommation > Production alors Full affiche «---«
 -	Mode veille: Toucher l'écran permet de passer en mode veille, c'est à dire éclairage atténué. Ce n'est pas vraiment un réglage de la luminosité, que je n'ai pas trouvé pour cette carte. J'ai triché en superposant un écran noir avec 80% d'opacité. Pour revenir en mode normal il faut toucher à nouveau l'écran. Il faut insister parfois quand ce n'est ps immédiat. C'est le gros défaut, car les test avec une réception BLE en continue ou avec FreeRtos et des mutex n'a pas donné de bons résultats en matière de réception, même si ça rendait le "touch" plus réactif.
 
-PARAMETRAGE:
-Pour fonctionner plusieurs lignes de code doivent être adapté à l'environnement. 
-Ces lignes sont dans le fichier acquisition_BT.cpp
-<pre>
-// Caractéristiques des appareils Victron
-int CAPACITE_BATTERIE_AH = 280;  // Capacité batterie (Ah) pour calculs TTG
-int PSOL = 350;   // Puissance max panneau solaire (Watt)
-int PALT = 50;    // Puissance max alternateur (Ampère)
-int PQUAI = 30;   // Puissance max chargeur de quai (Ampère)
 
-// Adresses MAC des appareils Victron
-#define MAC_SMARTSOLAR "f3:81:dc:56:9f:97"
-#define MAC_BMV_712 "c5:1d:ac:ed:91:92"
-#define MAC_ORION_XS "fb:c1:a3:08:4e:8c"
-#define MAC_IP22 "fb:82:24:5d:bb:27"
 
-// Noms des appareils
-#define NAME_SMARTSOLAR "SmartSolar"
-#define NAME_BMV_712 "BMV-712"
-#define NAME_ORION_XS "Orion XS"
-#define NAME_IP22 "IP22"
 
-// Clés de décryptage
-uint8_t key_SmartSolar[16] = {
-  0x4B, 0x05, 0x18, 0xE7, 0x42, 0x76, 0x88, 0x3A, 0xAE, 0x6F, 0x1C, 0xC9, 0xB0, 0x84, 0x25, 0x06
-};
 
-uint8_t key_BMV[16] = {
-  0xB4, 0x26, 0xA6, 0x45, 0x33, 0xFA, 0xD9, 0x63, 0x66, 0xAB, 0x72, 0xD3, 0x30, 0xAC, 0x13, 0x5A
-};
-
-uint8_t key_OrionXS[16] = {
-  0xEC, 0x7E, 0x29, 0xE7, 0x60, 0x43, 0xB4, 0x91, 0x07, 0xB6, 0x01, 0x33, 0x06, 0xBB, 0xD0, 0x13
-};
-
-uint8_t key_IP22[16] = {
-  0x64, 0xEB, 0xC5, 0x9D, 0xA0, 0xA1, 0x80, 0xB5, 0x9A, 0xE7, 0x44, 0xCF, 0x2B, 0xB4, 0xFF, 0x8B
-};
-</pre>
 
 
 
