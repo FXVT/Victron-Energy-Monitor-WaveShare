@@ -66,6 +66,47 @@ REMARQUES SUR LE FONCTIONNEMENT :
 -	Full indique dans combien de temps la batterie sera pleine en fonction de la production et de la consommation. Si Consommation > Production alors Full affiche «---«
 -	Mode veille: Toucher l'écran permet de passer en mode veille, c'est à dire éclairage atténué. Ce n'est pas vraiment un réglage de la luminosité, que je n'ai pas trouvé pour cette carte. J'ai triché en superposant un écran noir avec 80% d'opacité. Pour revenir en mode normal il faut toucher à nouveau l'écran. Il faut insister parfois quand ce n'est ps immédiat. C'est le gros défaut, car les test avec une réception BLE en continue ou avec FreeRtos et des mutex n'a pas donné de bons résultats en matière de réception, même si ça rendait le "touch" plus réactif.
 
+PARAMETRAGE:
+Pour fonctionner plusieurs lignes de code doivent être adapté à l'environnement. 
+Ces lignes sont dans le fichier acquisition_BT.cpp
+<pre>
+// Caractéristiques des appareils Victron
+int CAPACITE_BATTERIE_AH = 280;  // Capacité batterie (Ah) pour calculs TTG
+int PSOL = 350;   // Puissance max panneau solaire (Watt)
+int PALT = 50;    // Puissance max alternateur (Ampère)
+int PQUAI = 30;   // Puissance max chargeur de quai (Ampère)
+
+// Adresses MAC des appareils Victron
+#define MAC_SMARTSOLAR "f3:81:dc:56:9f:97"
+#define MAC_BMV_712 "c5:1d:ac:ed:91:92"
+#define MAC_ORION_XS "fb:c1:a3:08:4e:8c"
+#define MAC_IP22 "fb:82:24:5d:bb:27"
+
+// Noms des appareils
+#define NAME_SMARTSOLAR "SmartSolar"
+#define NAME_BMV_712 "BMV-712"
+#define NAME_ORION_XS "Orion XS"
+#define NAME_IP22 "IP22"
+
+// Clés de décryptage
+uint8_t key_SmartSolar[16] = {
+  0x4B, 0x05, 0x18, 0xE7, 0x42, 0x76, 0x88, 0x3A, 0xAE, 0x6F, 0x1C, 0xC9, 0xB0, 0x84, 0x25, 0x06
+};
+
+uint8_t key_BMV[16] = {
+  0xB4, 0x26, 0xA6, 0x45, 0x33, 0xFA, 0xD9, 0x63, 0x66, 0xAB, 0x72, 0xD3, 0x30, 0xAC, 0x13, 0x5A
+};
+
+uint8_t key_OrionXS[16] = {
+  0xEC, 0x7E, 0x29, 0xE7, 0x60, 0x43, 0xB4, 0x91, 0x07, 0xB6, 0x01, 0x33, 0x06, 0xBB, 0xD0, 0x13
+};
+
+uint8_t key_IP22[16] = {
+  0x64, 0xEB, 0xC5, 0x9D, 0xA0, 0xA1, 0x80, 0xB5, 0x9A, 0xE7, 0x44, 0xCF, 0x2B, 0xB4, 0xFF, 0x8B
+};
+</pre>
+
+
 
 
 
