@@ -22,13 +22,16 @@ Le code a été développé avec l’IDE Arduino 2.3.6 avec l’aide d’Antropi
 C’est du code C++ et LVGL ( https://lvgl.io/ )
 Dépendances : Bibliothèques
 -	LVGL 8.4.0
--	ESP32_Display_Panel 1.04
--	ESP32_IO_Expander 1.1.1
--	Esp-lib-utils 0.3.0
+-	Core Arduino ESP32 3.3.5 https://github.com/espressif/arduino-esp32
+-	ESP32_Display_Panel 1.04 https://github.com/esp-arduino-libs/ESP32_Display_Panel/tree/master
+-	ESP32_IO_Expander 1.1.1 https://github.com/esp-arduino-libs/ESP32_IO_Expander
+-	Esp-lib-utils 0.3.0 qui normalement est proposé au téléchargement quand on installe ESP32_IO_Expander
 
 Paramétrage LVGL : Le fichier de paramétrage de LVGL « lv_conf.h » doit avoir été correctement paramétré par rapport à la carte utilisée. S’en assurer en testant les programmes « examples » de la library LVGL.
 Dans ce fichier, ne pas oublier de sélectionner les polices de caractères utilisées par le projet (Paragraphe « Font usage »), Sélectionner également les paramètres suivants en particulier pour obtenir des couleurs en dégradées pour le fond d’écran.
 
+Autres paramétrages dans les bibliothèques:
+Voir le répertoire "bibliothèques".
 
 PERSONNALISATION :
 Des éléments doivent être impérativement personnalisés dans le code (Chapitre : « Personnalisation » sans le code) en fonction du bateau, de la batterie de servitude, et surtout des caractéristiques des appareils Victron :
