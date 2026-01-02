@@ -1,2 +1,10 @@
 Ce répertoire contient des fichiers déjà paramétrés pour certaines bibliothèques nécessaires.
-Bibliothèque ESP32_Display_Panel: fichier
+
+Bibliothèque ESP32_Display_Panel: 
+- Fichier esp_panel_drivers_conf.h . Ce fichier détermine quels pilotes sont utilisés: Pilote écran, tactile, ...
+- Fichier esp_panel_board_supported_conf.h . Ce fichier définit la marque et le type de carte utilisée, ici c'est la WaveShare ESP32 S3 Touch 5B
+- Tous les deux localisés dans le répertoire ..\Arduino\libraries\ESP32_Display_Panel
+
+Bibliothèque LVGL: 
+- Fichier lv_conf.h . Contient les paramétrages de LVGL: Polices choisies, possibilité de gérer les dégradés...
+- Localisé dans le répertoire ..\Arduino\libraries
