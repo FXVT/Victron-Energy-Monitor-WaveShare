@@ -51,7 +51,7 @@ Embedded graphics library for creating user interfaces
 
 1. Ensure libraries are installed via Arduino Library Manager:
    - ESP32_Display_Panel
-   - lvgl
+   - lvgl v8.4
 
 2. Copy the configuration files provided in this repository to their respective locations
 
@@ -82,13 +82,9 @@ Adapt `lv_conf.h` according to your needs:
 - Backup your modifications before updating libraries
 - Consult official documentation for advanced configurations
 
-## Documentation
-
-- [ESP32 Display Panel Library](https://github.com/espressif/esp-iot-solution)
-- [LVGL Documentation](https://docs.lvgl.io/master/)
-- [WaveShare ESP32 S3 Touch 5B](https://www.waveshare.com/wiki/ESP32-S3-Touch-5B)
 
 ## License
 
 Configuration files are provided under MIT license.  
+
 Refer to the respective library licenses for more information.
