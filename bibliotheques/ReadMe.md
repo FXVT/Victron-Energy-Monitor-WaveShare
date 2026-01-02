@@ -1,5 +1,7 @@
 # Configuration des bibliothèques ESP32 Display
 
+For the English version, please read the file ReadMe_EN.md
+
 Ce répertoire contient les fichiers de configuration pré-paramétrés pour les bibliothèques nécessaires au développement d'interfaces graphiques sur ESP32 avec LVGL.
 
 ## 📁 Structure des fichiers
@@ -88,3 +90,4 @@ Adaptez `lv_conf.h` selon vos besoins :
 Les fichiers de configuration sont fournis sous licence MIT.  
 
 Reportez-vous aux licences respectives des bibliothèques pour plus d'informations.
+
