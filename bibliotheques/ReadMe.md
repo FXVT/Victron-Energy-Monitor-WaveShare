@@ -51,7 +51,7 @@ Bibliothèque graphique embarquée pour créer des interfaces utilisateur
 
 1. Assurez-vous que les bibliothèques sont installées via le gestionnaire de bibliothèques Arduino :
    - ESP32_Display_Panel
-   - lvgl
+   - lvgl v8.4
 
 2. Copiez les fichiers de configuration fournis dans ce répertoire vers leurs emplacements respectifs
 
@@ -82,13 +82,9 @@ Adaptez `lv_conf.h` selon vos besoins :
 - Sauvegardez vos modifications avant de mettre à jour les bibliothèques
 - Consultez la documentation officielle pour des configurations avancées
 
-## 🔗 Documentation
-
-- [ESP32 Display Panel Library](https://github.com/espressif/esp-iot-solution)
-- [LVGL Documentation](https://docs.lvgl.io/master/)
-- [WaveShare ESP32 S3 Touch 5B](https://www.waveshare.com/wiki/ESP32-S3-Touch-5B)
 
 ## 📄 Licence
 
 Les fichiers de configuration sont fournis sous licence MIT.  
+
 Reportez-vous aux licences respectives des bibliothèques pour plus d'informations.
